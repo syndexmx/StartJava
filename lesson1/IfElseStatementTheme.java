@@ -1,8 +1,9 @@
 public class IfElseStatementTheme {
 
     public static void main(String[] args) {
-        System.out.println("Ветвление: if-else\n");
-        System.out.println("1. Перевод псевдокода на язык Java\n");
+        System.out.println("Ветвление: if-else");
+
+        System.out.println("\n1. Перевод псевдокода на язык Java");
 
         boolean isMale = true;
         if (!isMale) {
@@ -34,7 +35,7 @@ public class IfElseStatementTheme {
             System.out.println("Для вас утешительный приз");
         }
 
-        System.out.println("\n2. Поиск большего числа\n");
+        System.out.println("\n2. Поиск большего числа");
         int firstNumber = 15;
         int secondNumber = 24;
         if (firstNumber > secondNumber) {
@@ -47,7 +48,7 @@ public class IfElseStatementTheme {
             System.out.println("Оба числа равны " + firstNumber);
         }
 
-        System.out.println("\n3. Проверка числа\n");
+        System.out.println("\n3. Проверка числа");
         int justAnotherNumber = 67;
         if (justAnotherNumber == 0) {
             System.out.println("Число равно нулю ");
@@ -68,28 +69,28 @@ public class IfElseStatementTheme {
             }
         }
 
-        System.out.println("\n4. Поиск одинаковых цифр в числах\n");
+        System.out.println("\n4. Поиск одинаковых цифр в числах");
         int a = 123;
         int b = 223;
-        boolean haveEqualOnes = a % 10 == b % 10;
-        boolean haveEqualTens = a / 10 % 10 == b / 10 % 10;
-        boolean haveEqualHundreds = a / 100 == b / 100;
-        if (!haveEqualOnes && !haveEqualTens && !haveEqualHundreds) {
+        boolean hasEqualOnes = a % 10 == b % 10;
+        boolean hasEqualTens = a / 10 % 10 == b / 10 % 10;
+        boolean hasEqualHundreds = a / 100 == b / 100;
+        if (!hasEqualOnes && !hasEqualTens && !hasEqualHundreds) {
             System.out.println("Нет совпадающих разрядов");
         } else {
             System.out.println("У числа " + a + " и числа " + b);
-            if (haveEqualOnes) {
+            if (hasEqualOnes) {
                 System.out.println("cовпал разряд #" + 1 + ": " + a % 10);
             }
-            if (haveEqualTens) {
+            if (hasEqualTens) {
                 System.out.println("cовпал разряд #" + 2 + ": " + a / 10 % 10);
             }
-            if (haveEqualHundreds) {
+            if (hasEqualHundreds) {
                 System.out.println("cовпал разряд #" + 3 + ": " + a / 100);
             }
         }
 
-        System.out.println("\n5. Определение символа по его коду\n");
+        System.out.println("\n5. Определение символа по его коду");
         char symbol = '\u0057';
         System.out.print("Символ '" + symbol + "' является ");
         if ((int) symbol >= (int) '0' && (int) symbol <= (int) '9') {
@@ -102,7 +103,7 @@ public class IfElseStatementTheme {
             System.out.println("не буквой и не цифрой");
         }
 
-        System.out.println("\n6. Подсчет суммы вклада и начисленных банком %\n");
+        System.out.println("\n6. Подсчет суммы вклада и начисленных банком %");
         int amount = 300_001;
         System.out.println("Сумма вклада : " + amount);
         double interestRate;
@@ -114,11 +115,11 @@ public class IfElseStatementTheme {
             interestRate = 0.1;
         }
         int interest = (int) (amount * interestRate);
-        System.out.println("Начислено в касчестве процентов по вкладу : " + interest);
         int finalAmount = amount + interest;
+        System.out.println("Начислено в касчестве процентов по вкладу : " + interest);
         System.out.println("Сумма по окончании срока вклада : " + finalAmount);
 
-        System.out.println("\n7. Определение оценки по предметам\n");
+        System.out.println("\n7. Определение оценки по предметам");
         double historyRate = 59.0;
         double programmingRate = 92.0;
         int historyMark;
@@ -142,13 +143,13 @@ public class IfElseStatementTheme {
         } else {
             programmingMark = 2;
         }
-        System.out.println("Программирование : " + programmingMark);
-        double meanMark = (historyMark + programmingMark) / 2;
-        System.out.println("Средний балл : " + meanMark);
+        double meanMark = (historyMark + programmingMark) / 2.0;
         double meanRate = (historyRate + programmingRate) / 2;
+        System.out.println("Программирование : " + programmingMark);
+        System.out.println("Средний балл : " + meanMark);
         System.out.println("Средний процент : " + meanRate + "%");
 
-        System.out.println("\n8. Расчет годовой прибыли\n");
+        System.out.println("\n8. Расчет годовой прибыли");
         int monthlyReturn = 113_000;
         int monthlyPremisesRent = 5000;
         int monthlyProductionCost = 9000;

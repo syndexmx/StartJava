@@ -3,9 +3,9 @@ import java.util.UUID;
 class VariableNamesTheme {
 
     public static void main(String[] args) {
-        System.out.println("Именование переменных \n");
+        System.out.println("Именование переменных");
 
-        System.out.println("1. Разные переменные");
+        System.out.println("\n1. Разные переменные");
         //цифра
         byte digit = 7;
         System.out.println("цифра = " + digit);
@@ -124,7 +124,7 @@ class VariableNamesTheme {
         int numbersPerLine = 12;
         System.out.println("количество чисел в каждой строке: " + numbersPerLine);
 
-        System.out.println("\n 2. boolean-переменные");
+        System.out.println("\n2. boolean-переменные");
         
         // сотни равны?
         int a = 685;
@@ -164,9 +164,7 @@ class VariableNamesTheme {
         boolean containsUniqueLines = true;
         System.out.println("имеются уникальные строки? " + containsUniqueLines);
 
-        System.out.println();
-
-        System.out.println("3. Аббревиатуры");
+        System.out.println("\n3. Аббревиатуры");
 
         //старый universally unique identifier
         UUID oldUuid = UUID.randomUUID();
