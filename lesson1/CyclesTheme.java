@@ -25,21 +25,19 @@ public class CyclesTheme {
         int alexCredit = 10;
         int bobCredit = 5;
         int kateCredit = -1;
-        int min;
-        if (alexCredit < bobCredit && alexCredit < kateCredit) {
+        int min = kateCredit;
+        int max = kateCredit;
+        if (alexCredit < min) {
             min = alexCredit;
-        } else if (bobCredit < kateCredit) {
-            min = bobCredit;
-        } else {
-            min = kateCredit;
         }
-        int max;
-        if (alexCredit > bobCredit && alexCredit > kateCredit) {
+        if (bobCredit < min) {
+            min = alexCredit;
+        }
+        if (alexCredit > max) {
             max = alexCredit;
-        } else if (bobCredit > kateCredit) {
-            max = bobCredit;
-        } else {
-            max = kateCredit;
+        }
+        if (bobCredit > max) {
+            max = alexCredit;
         }
         System.out.println("Минимальное число : " + min);
         System.out.println("Максимальное число : " + max);
@@ -57,21 +55,21 @@ public class CyclesTheme {
             sumOfDigits += currentDigit;
             reversedNumber /= 10;
         }
-        System.out.println("\nСумма цифр : " + sumOfDigits);
+        System.out.println("\nСумма цифр : " + sumOfDigits + "\n");
 
         System.out.println("\n4. Вывод чисел в несколько строк");
         rangeFrom = 1;
         rangeTo = 24;
         int formatCounter = 0;
         for (int i = rangeFrom; i < rangeTo; i += 2) {
-            System.out.printf("  %2d", i);
+            System.out.printf("%4d", i);
             formatCounter = (formatCounter + 1) % 5;
             if (formatCounter == 0) {
                 System.out.println();
             }
         }
         while (formatCounter > 0) {
-            System.out.printf("  %2d", 0);
+            System.out.printf("%4d", 0);
             formatCounter = (formatCounter + 1) % 5;
         }
 
@@ -101,6 +99,7 @@ public class CyclesTheme {
             }
             System.out.println();
         }
+
         System.out.println();
         int linesLeft = 5;
         while (linesLeft > 0) {
@@ -113,6 +112,7 @@ public class CyclesTheme {
             linesLeft--;
         }
         System.out.println();
+
         boolean goingUp = true;
         int currentLength = 1;
         do {
@@ -131,18 +131,16 @@ public class CyclesTheme {
                 currentLength--;
             }
         } while (currentLength > 0);
-        System.out.println();
 
         System.out.println("\n7. Отображение ASCII-символов");
         System.out.println("DECIMAL   CHARACTER   DESCRIPTION");
-        for (int code = 15; code < (int) '0'; code = code + 2) {
+        for (int code = 15; code < '0'; code += 2) {
             System.out.printf("%4d", code);
-            char symbol = (char) code;
-            System.out.printf("%11c", symbol);
+            System.out.printf("%11c", (char) code);
             for (int j = 0; j < 12; j++) {
                 System.out.print(" ");
             }
-            System.out.println(Character.getName(symbol));
+            System.out.println(Character.getName((char) code));
         }
         int startLittleLetters = (int) 'a';
         int endLittleLetters = (int) 'z';
@@ -162,24 +160,16 @@ public class CyclesTheme {
 
         System.out.println("\n8. Проверка, является ли число палиндромом");
         int suspectedPalindrome = 1234321;
-        int maxSize = 10;
-        int[] digits = new int [maxSize];
-        int index = 0;
-        int yetToProcess = suspectedPalindrome;
-        while (yetToProcess > 0) {
-            int currentDigit = yetToProcess % 10;
-            digits[index] = currentDigit;
-            yetToProcess /= 10;
-            index++;
-        }
-        int size = index;
         System.out.print("Число " + suspectedPalindrome);
         boolean isPalindrome = true;
-        for (int i = 0; i < size / 2; i++) {
-            if (digits[i] != digits[size - i - 1]) {
+        int divider = 1000_000;
+        for (int i = 0; i < 3; i++) {
+            if (suspectedPalindrome % 10 != (suspectedPalindrome / divider % 10)) {
                 isPalindrome = false;
                 break;
             }
+            suspectedPalindrome /= 10;
+            divider /= 100;
         }
         if (!isPalindrome) {
             System.out.print(" не");
@@ -191,14 +181,12 @@ public class CyclesTheme {
         int firstHalf = suspectedHappyNumber % 1000;
         int secondHalf = suspectedHappyNumber / 1000;
         int firstSum = 0;
+        int secondSum = 0;
         int firstLeft = firstHalf;
+        int secondLeft = secondHalf;
         for (int i = 0; i < 3; i++) {
             firstSum += firstLeft % 10;
             firstLeft /= 10;
-        }
-        int secondSum = 0;
-        int secondLeft = secondHalf;
-        for (int i = 0; i < 3; i++) {
             secondSum += secondLeft % 10;
             secondLeft /= 10;
         }
