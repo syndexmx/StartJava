@@ -60,17 +60,17 @@ public class CyclesTheme {
         System.out.println("\n4. Вывод чисел в несколько строк");
         rangeFrom = 1;
         rangeTo = 24;
-        int formatCounter = 0;
+        int newLineMarker = 0;
         for (int i = rangeFrom; i < rangeTo; i += 2) {
             System.out.printf("%4d", i);
-            formatCounter = (formatCounter + 1) % 5;
-            if (formatCounter == 0) {
+            newLineMarker = (newLineMarker + 1) % 5;
+            if (newLineMarker == 0) {
                 System.out.println();
             }
         }
-        while (formatCounter > 0) {
+        while (newLineMarker > 0) {
             System.out.printf("%4d", 0);
-            formatCounter = (formatCounter + 1) % 5;
+            newLineMarker = (newLineMarker + 1) % 5;
         }
 
         System.out.println("\n\n5. Проверка количества двоек числа на четность/нечетность");
