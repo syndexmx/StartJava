@@ -4,7 +4,7 @@ public class GuessingGame {
 
     public static void main(String[] args) {
         Random random = new Random();
-        int target = random.nextInt(1,100);
+        int target = random.nextInt(1,101);
         int guessor = 50;
         while (target != guessor) {
             if (guessor > target) {
