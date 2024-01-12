@@ -50,7 +50,6 @@ public class IfElseStatementTheme {
         int originalNumber = 67;
         if (originalNumber == 0) {
             System.out.println("Число равно нулю ");
-            System.exit(0);
         } else {
             System.out.print(originalNumber + " является ");
             if (originalNumber > 0) {
