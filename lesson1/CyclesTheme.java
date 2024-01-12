@@ -6,38 +6,46 @@ public class CyclesTheme {
         System.out.println("\n1. Подсчет суммы четных и нечетных чисел");
         int rangeFrom = -10;
         int rangeTo = 21;
-        int currentNumber = rangeFrom;
-        int oddSum = 0;
-        int evenSum = 0;
+        int counter = rangeFrom;
+        int sumOdd = 0;
+        int sumEven = 0;
         do {
-            if (currentNumber % 2 == 0) {
+            if (counter % 2 == 0) {
                 //считаем ноль тоже четным
-                evenSum += currentNumber;
+                sumEven += counter;
             } else {
-                oddSum += currentNumber;
+                sumOdd += counter;
             }
-            currentNumber++;
-        } while (currentNumber <= rangeTo);
+            counter++;
+        } while (counter <= rangeTo);
         System.out.println("На отрезке [" + rangeFrom  + ", " + rangeTo  + "] сумма " +
-                "четных чисел = " + evenSum + ", а нечетных = " + oddSum);
+                "четных чисел = " + sumEven + ", а нечетных = " + sumOdd);
 
         System.out.println("\n2. Вывод чисел в порядке убывания");
-        int[] arraySecondTask = {10, 5, -1};
-        int max = Integer.MIN_VALUE;
-        int min = Integer.MAX_VALUE;
-        for (int i = 0; i < arraySecondTask.length; i++) {
-            if (arraySecondTask[i] < min) {
-                min = arraySecondTask[i];
-            }
-            if (arraySecondTask[i] > max) {
-                max = arraySecondTask[i];
-            }
+        int alexCredit = 10;
+        int bobCredit = 5;
+        int kateCredit = -1;
+        int min;
+        if (alexCredit < bobCredit && alexCredit < kateCredit) {
+            min = alexCredit;
+        } else if (bobCredit < kateCredit) {
+            min = bobCredit;
+        } else {
+            min = kateCredit;
+        }
+        int max;
+        if (alexCredit > bobCredit && alexCredit > kateCredit) {
+            max = alexCredit;
+        } else if (bobCredit > kateCredit) {
+            max = bobCredit;
+        } else {
+            max = kateCredit;
         }
         System.out.println("Минимальное число : " + min);
         System.out.println("Максимальное число : " + max);
         System.out.println("Все числа интервала от max до min от большего к меньшему:");
         for (int i = max - 1; i > min; i--) {
-            System.out.println(i);
+            System.out.print(i + " ");
         }
 
         System.out.println("\n3.Вывод реверсивного числа и суммы его цифр");
@@ -47,41 +55,35 @@ public class CyclesTheme {
             int currentDigit = reversedNumber % 10;
             System.out.print(currentDigit);
             sumOfDigits += currentDigit;
-            reversedNumber = reversedNumber / 10;
+            reversedNumber /= 10;
         }
         System.out.println("\nСумма цифр : " + sumOfDigits);
 
         System.out.println("\n4. Вывод чисел в несколько строк");
-        int taskFourRangeFrom = 1;
-        int taskFourRangeToOpen = 24;
+        rangeFrom = 1;
+        rangeTo = 24;
         int formatCounter = 0;
-        for (int i = taskFourRangeFrom; i < taskFourRangeToOpen; i++) {
-            if (i % 2 == 0) {
-                System.out.print("  ");
-                System.out.printf("%2d", i);
-                formatCounter = (formatCounter + 1) % 5;
-                if (formatCounter == 0) {
-                    System.out.println();
-                }
+        for (int i = rangeFrom; i < rangeTo; i += 2) {
+            System.out.printf("  %2d", i);
+            formatCounter = (formatCounter + 1) % 5;
+            if (formatCounter == 0) {
+                System.out.println();
             }
         }
         while (formatCounter > 0) {
-            System.out.print("  ");
-            System.out.printf("%2d", 0);
+            System.out.printf("  %2d", 0);
             formatCounter = (formatCounter + 1) % 5;
         }
-        System.out.println();
 
-        System.out.println("\n5. Проверка количества двоек числа на четность/нечетность");
+        System.out.println("\n\n5. Проверка количества двоек числа на четность/нечетность");
         int parsedNumber = 3242592;
         int rest = parsedNumber;
         int numberOfTwos = 0;
         while (rest > 0) {
-            int currentDigit = rest % 10;
-            if (currentDigit == 2) {
+            if (rest % 10 == 2) {
                 numberOfTwos++;
             }
-            rest = rest / 10;
+            rest /= 10;
         }
         boolean isEven = numberOfTwos % 2 == 0;
         System.out.print("В числе " + parsedNumber + " ");
@@ -93,8 +95,8 @@ public class CyclesTheme {
         System.out.println(" число двоек - " + numberOfTwos);
 
         System.out.println("\n6. Отображение геометрических фигур");
-        for (int j = 0; j < 5; j++) {
-            for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 10; j++) {
                 System.out.print("*");
             }
             System.out.println();
@@ -114,11 +116,11 @@ public class CyclesTheme {
         boolean goingUp = true;
         int currentLength = 1;
         do {
-            int i = 0;
+            int lineLength = 0;
             do {
                 System.out.print("$");
-                i++;
-            } while (i < currentLength);
+                lineLength++;
+            } while (lineLength < currentLength);
             System.out.println();
             if (goingUp) {
                 currentLength++;
@@ -167,7 +169,7 @@ public class CyclesTheme {
         while (yetToProcess > 0) {
             int currentDigit = yetToProcess % 10;
             digits[index] = currentDigit;
-            yetToProcess = yetToProcess / 10;
+            yetToProcess /= 10;
             index++;
         }
         int size = index;
@@ -192,13 +194,13 @@ public class CyclesTheme {
         int firstLeft = firstHalf;
         for (int i = 0; i < 3; i++) {
             firstSum += firstLeft % 10;
-            firstLeft = firstLeft / 10;
+            firstLeft /= 10;
         }
         int secondSum = 0;
         int secondLeft = secondHalf;
         for (int i = 0; i < 3; i++) {
             secondSum += secondLeft % 10;
-            secondLeft = secondLeft / 10;
+            secondLeft /= 10;
         }
         System.out.print("Число " + suspectedHappyNumber + " ");
         boolean isHappy = (firstSum == secondSum);
