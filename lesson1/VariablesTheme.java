@@ -38,12 +38,10 @@ class VariablesTheme {
 
         System.out.println("\n3. Вывод слова JAVA");
         
-        System.out.println();
-        System.out.println("    J    a  v     v  a   ");                                            
+        System.out.println("\n    J    a  v     v  a   ");
         System.out.println("    J   a a  v   v  a a  ");                                            
         System.out.println(" J  J  aaaaa  V V  aaaaa ");                                              
         System.out.println("  JJ  a     a  V  a     a");
-        System.out.println();
 
         System.out.println("\n4. Вывод min и max значений целых числовых типов");
         
