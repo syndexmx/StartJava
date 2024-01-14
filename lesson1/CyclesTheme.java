@@ -46,7 +46,7 @@ public class CyclesTheme {
             System.out.print(i + " ");
         }
 
-        System.out.println("\n3.Вывод реверсивного числа и суммы его цифр");
+        System.out.println("\n\n3.Вывод реверсивного числа и суммы его цифр");
         int reversedNumber = 1234;
         int sumOfDigits = 0;
         while (reversedNumber > 0) {
@@ -55,7 +55,7 @@ public class CyclesTheme {
             sumOfDigits += currentDigit;
             reversedNumber /= 10;
         }
-        System.out.println("\nСумма цифр : " + sumOfDigits + "\n");
+        System.out.println("\nСумма цифр : " + sumOfDigits);
 
         System.out.println("\n4. Вывод чисел в несколько строк");
         rangeFrom = 1;
@@ -140,20 +140,19 @@ public class CyclesTheme {
             for (int j = 0; j < 12; j++) {
                 System.out.print(" ");
             }
-            System.out.println(Character.getName((char) code));
+            System.out.println(Character.getName(code));
         }
         int startLittleLetters = (int) 'a';
         int endLittleLetters = (int) 'z';
         int code = startLittleLetters;
         while (code <= endLittleLetters) {
-            if (code % 2 == 0){
+            if (code % 2 == 0) {
                 System.out.printf("%4d", code);
-                char symbol = (char) code;
-                System.out.printf("%11c", symbol);
+                System.out.printf("%11c", (char) code);
                 for (int j = 0; j < 12; j++) {
                     System.out.print(" ");
                 }
-                System.out.println(Character.getName(symbol));
+                System.out.println(Character.getName(code));
             }
             code++;
         }
@@ -162,7 +161,16 @@ public class CyclesTheme {
         int suspectedPalindrome = 1234321;
         System.out.print("Число " + suspectedPalindrome);
         boolean isPalindrome = true;
-        int divider = 1000_000;
+        int divider = 1;
+        int limit = 0;
+        int stillToProcess = suspectedPalindrome;
+        do {
+            stillToProcess /= 10;
+            limit++;
+        } while (stillToProcess > 0);
+        for (int i =0; i < (int) (Math.log10(suspectedPalindrome)); i++) {
+            divider *= 10;
+        }
         for (int i = 0; i < 3; i++) {
             if (suspectedPalindrome % 10 != (suspectedPalindrome / divider % 10)) {
                 isPalindrome = false;
@@ -174,7 +182,7 @@ public class CyclesTheme {
         if (!isPalindrome) {
             System.out.print(" не");
         }
-        System.out.println(" является палиндромом.");
+        System.out.println(" является палиндромом");
 
         System.out.println("\n9. Проверка, является ли число счастливым");
         int suspectedHappyNumber = 678696;
