@@ -1,4 +1,6 @@
-public class Calculator1 {
+package com.startjava.lesson_1.final_;
+
+public class Calculator {
 
     public static void main(String[] args) {
         int operandOne = 17;
@@ -17,7 +19,7 @@ public class Calculator1 {
             result = operandOne % operandTwo;
         } else {
             result = operandOne;
-            for (int i = 2; i < operandTwo; i++) {
+            for (int i = 1; i < operandTwo; i++) {
                 result *= operandOne;
             }
         }

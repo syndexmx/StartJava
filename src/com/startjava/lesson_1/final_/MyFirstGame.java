@@ -1,6 +1,8 @@
+package com.startjava.lesson_1.final_;
+
 import java.util.Random;
 
-public class GuessingGame {
+public class MyFirstGame {
 
     public static void main(String[] args) {
         Random random = new Random();

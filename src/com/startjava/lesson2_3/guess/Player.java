@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package com.startjava.lesson2_3.guess;
 
 public class Player {
 

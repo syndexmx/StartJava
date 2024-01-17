@@ -1,5 +1,6 @@
-import java.util.UUID;
+package com.startjava.lesson_1.base;
 
+import java.util.UUID;
 class VariableNamesTheme {
 
     public static void main(String[] args) {
