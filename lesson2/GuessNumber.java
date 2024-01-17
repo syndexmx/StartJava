@@ -23,6 +23,13 @@ public class GuessNumber {
         }
     }
 
+    private void makeGuess(Player player) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Попытка игрока " + player.getName() + ": ");
+        player.setNumber(scanner.nextInt());
+        scanner.nextLine();
+    }
+
     private boolean hasWon(Player player) {
         if (player.getNumber() == target) {
             System.out.println("Игрок " + player.getName() + " выиграл!");
@@ -34,12 +41,5 @@ public class GuessNumber {
             System.out.println("Число " + player.getNumber() + " больше того, что загадал компьютер");
         }
         return false;
-    }
-
-    public void makeGuess(Player player) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Попытка игрока " + player.getName() + ": ");
-        player.setNumber(scanner.nextInt());
-        scanner.nextLine();
     }
 }
