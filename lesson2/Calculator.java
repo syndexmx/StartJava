@@ -30,7 +30,7 @@ public class Calculator {
 
     public void calculate() {
         int result;
-        switch (operation){
+        switch (operation) {
             case '+' :
                 result = a + b;
                 break;
