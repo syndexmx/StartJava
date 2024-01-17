@@ -1,26 +1,23 @@
 public class Calculator {
 
-    private int operandOne;
-    private int operandTwo;
+    private int a;
+    private int b;
     private char operation;
 
-    public Calculator() {
+    public int getA() {
+        return a;
     }
 
-    public int getOperandOne() {
-        return operandOne;
+    public void setA(int a) {
+        this.a = a;
     }
 
-    public void setOperandOne(int operandOne) {
-        this.operandOne = operandOne;
+    public int getB() {
+        return b;
     }
 
-    public int getOperandTwo() {
-        return operandTwo;
-    }
-
-    public void setOperandTwo(int operandTwo) {
-        this.operandTwo = operandTwo;
+    public void setB(int b) {
+        this.b = b;
     }
 
     public char getOperation() {
@@ -35,30 +32,30 @@ public class Calculator {
         int result;
         switch (operation){
             case '+' :
-                result = operandOne + operandTwo;
+                result = a + b;
                 break;
             case '-' :
-                result = operandOne - operandTwo;
+                result = a - b;
                 break;
             case '*' :
-                result = operandOne * operandTwo;
+                result = a * b;
                 break;
             case '/' :
-                result = operandOne / operandTwo;
+                result = a / b;
                 break;
             case '%' :
-                result = operandOne % operandTwo;
+                result = a % b;
                 break;
             case '^' :
-                result = operandOne;
-                for (int i = 2; i < operandTwo; i++) {
-                    result *= operandOne;
+                result = a;
+                for (int i = 1; i < b; i++) {
+                    result *= a;
                 }
                 break;
             default:
                 System.out.println("Некорректная операция");
                 return;
         }
-        System.out.println(operandOne + " " + operation + " " + operandTwo + " = " + result);
+        System.out.println(a + " " + operation + " " + b + " = " + result);
     }
 }

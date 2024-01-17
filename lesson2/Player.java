@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Player {
 
     private String name;
+
     private int number;
 
     public Player(String name) {
@@ -13,14 +14,11 @@ public class Player {
         return name;
     }
 
-    public int getNumber() {
-        return number;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public void makeGuess() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Попытка игрока " + name + ": ");
-        number = scanner.nextInt();
-        scanner.nextLine();
+    public int getNumber() {
+        return number;
     }
 }
