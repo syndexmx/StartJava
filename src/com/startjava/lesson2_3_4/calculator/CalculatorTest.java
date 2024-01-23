@@ -9,19 +9,19 @@ public class CalculatorTest {
         Scanner scanner = new Scanner(System.in);
         String choice;
         do {
-            System.out.print("Введите первое число: ");
-            calculator.setA(scanner.nextInt());
-            scanner.nextLine();
-            System.out.print("Введите символ операции ( + - * / % ^ ): ");
-            calculator.setOperation(scanner.nextLine().charAt(0));
-            System.out.print("Введите второе число: ");
-            calculator.setB(scanner.nextInt());
-            scanner.nextLine();
-            calculator.calculate();
-            do {
-                System.out.print("Хотите продолжить вычисления? [yes/no]: ");
-                choice = scanner.nextLine();
-            } while (!choice.equals("yes") && !choice.equals("no"));
-        } while (choice.equals("yes"));
+            System.out.print("Введите математическое выражение в формате '5 * 3' : ");
+            String expression = scanner.nextLine();
+            double result = calculator.calculate(expression);
+            if (result != Double.MIN_VALUE) {
+                System.out.print(expression + " = ");
+                if (result - (int) result == 0) {
+                    System.out.print((int) result);
+                } else {
+                    System.out.printf("%6.3f", result);
+                }
+            }
+            System.out.print("\nХотите продолжить вычисления? ['yes' = да]: ");
+            choice = scanner.nextLine();
+        } while (choice.equalsIgnoreCase("yes"));
     }
 }
