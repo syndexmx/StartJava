@@ -1,4 +1,4 @@
-package com.startjava.lesson4.array;
+package com.startjava.lesson2_3_4.array;
 
 import java.util.Random;
 
