@@ -2,7 +2,7 @@ package com.startjava.lesson2_3_4.array;
 
 import java.util.Random;
 
-public class ArrayMain {
+public class ArrayTheme {
 
     public static void main(String[] args) {
         doTask1();
