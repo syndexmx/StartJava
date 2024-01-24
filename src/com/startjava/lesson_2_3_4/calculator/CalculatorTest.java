@@ -13,13 +13,11 @@ public class CalculatorTest {
             String expression = scanner.nextLine();
             try {
                 double result = calculator.calculate(expression);
-                if (result != Double.MIN_VALUE) {
-                    System.out.print(expression + " = ");
-                    if (result - (int) result == 0) {
-                        System.out.print((int) result);
-                    } else {
-                        System.out.printf("%6.3f", result);
-                    }
+                System.out.print(expression + " = ");
+                if (result - (int) result == 0) {
+                    System.out.print((int) result);
+                } else {
+                    System.out.printf("%6.3f", result);
                 }
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
