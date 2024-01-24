@@ -12,18 +12,21 @@ public class CalculatorTest {
             System.out.print("Введите математическое выражение в формате '5 * 3' : ");
             String expression = scanner.nextLine();
             try {
-                double result = calculator.calculate(expression);
-                System.out.print(expression + " = ");
-                if (result - (int) result == 0) {
-                    System.out.print((int) result);
-                } else {
-                    System.out.printf("%6.3f", result);
-                }
+               printResult(expression, calculator.calculate(expression));
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }
             System.out.print("\nХотите продолжить вычисления? ['yes' = да]: ");
             choice = scanner.nextLine();
         } while (choice.equalsIgnoreCase("yes"));
+    }
+
+    private static void printResult(String expression, double result) {
+        System.out.print(expression + " = ");
+        if (result == (int) result) {
+            System.out.print((int) result);
+        } else {
+            System.out.printf("%6.3f", result);
+        }
     }
 }
