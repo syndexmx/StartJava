@@ -8,7 +8,7 @@ public class ArrayTheme {
         reverse();
         multiply();
         deleteElements();
-        makeAlphabetStaircase();
+        makeAlphabetStairs();
         fullInArray();
     }
 
@@ -53,7 +53,7 @@ public class ArrayTheme {
             randomNumbers[i] = Math.random();
         }
         System.out.println("Массив до обработки:");
-        printArray(randomNumbers, 8);
+        printArray(randomNumbers);
         int midIndex = length / 2;
         double criterionNumber = randomNumbers[midIndex];
         int nulled = 0;
@@ -65,10 +65,10 @@ public class ArrayTheme {
         }
         System.out.println("Обнулено ячеек: " + nulled);
         System.out.println("Массив после обработки:");
-        printArray(randomNumbers, 7);
+        printArray(randomNumbers);
     }
 
-    private static void makeAlphabetStaircase() {
+    private static void makeAlphabetStairs() {
         System.out.println("\n4. Вывод алфавита лесенкой");
         int first = (int) 'A';
         int last =  (int) 'Z';
@@ -83,7 +83,6 @@ public class ArrayTheme {
             }
             System.out.println();
         }
-
     }
 
     private static void fullInArray() {
@@ -129,11 +128,12 @@ public class ArrayTheme {
         System.out.println("]");
     }
 
-    private static void printArray(double[] array, int numbersInRow) {
+    private static void printArray(double[] array) {
         int last = array.length - 1;
         for (int i = 0; i <= last; i++) {
             System.out.printf("%7.3f", array[i]);
-            if ((i + 1) % numbersInRow == 0) {
+            int maxNumbersInRow = 8;
+            if ((i + 1) % maxNumbersInRow == 0) {
                 System.out.println();
             }
         }
