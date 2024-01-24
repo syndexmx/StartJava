@@ -11,14 +11,18 @@ public class CalculatorTest {
         do {
             System.out.print("Введите математическое выражение в формате '5 * 3' : ");
             String expression = scanner.nextLine();
-            double result = calculator.calculate(expression);
-            if (result != Double.MIN_VALUE) {
-                System.out.print(expression + " = ");
-                if (result - (int) result == 0) {
-                    System.out.print((int) result);
-                } else {
-                    System.out.printf("%6.3f", result);
+            try {
+                double result = calculator.calculate(expression);
+                if (result != Double.MIN_VALUE) {
+                    System.out.print(expression + " = ");
+                    if (result - (int) result == 0) {
+                        System.out.print((int) result);
+                    } else {
+                        System.out.printf("%6.3f", result);
+                    }
                 }
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
             }
             System.out.print("\nХотите продолжить вычисления? ['yes' = да]: ");
             choice = scanner.nextLine();
