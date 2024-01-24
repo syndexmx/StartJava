@@ -17,14 +17,12 @@ public class ArrayTheme {
         int[] numbersToReverse = {7, 3, 4, 6, 5, 1, 2};
         System.out.print("До реверса: ");
         printArray(numbersToReverse);
-        int length = numbersToReverse.length;
-        int mid = length / 2;
-        int backwardIndex = length - 1;
-        for (int i = 0; i < mid; i++) {
-            int swap = numbersToReverse[i];
-            numbersToReverse[i] = numbersToReverse[backwardIndex];
+        int index = 0;
+        int backwardIndex = numbersToReverse.length;
+        while (index < --backwardIndex) {
+            int swap = numbersToReverse[index];
+            numbersToReverse[index++] = numbersToReverse[backwardIndex];
             numbersToReverse[backwardIndex] = swap;
-            backwardIndex--;
         }
         System.out.print("После реверса: ");
         printArray(numbersToReverse);
