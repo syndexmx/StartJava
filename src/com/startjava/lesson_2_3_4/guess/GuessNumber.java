@@ -2,7 +2,6 @@ package com.startjava.lesson_2_3_4.guess;
 
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class GuessNumber {
 
@@ -12,37 +11,66 @@ public class GuessNumber {
 
     public GuessNumber(Player firstPlayer, Player secondPlayer) {
         this.player1 = firstPlayer;
+        this.player1.resetAttempts();
         this.player2 = secondPlayer;
+        this.player2.resetAttempts();
         Random random = new Random();
         target = random.nextInt(1, 101);
     }
 
     public void play() {
         while (true) {
-            makeGuess(player1);
-            if (hasWon(player1)) break;
-            makeGuess(player2);
-            if (hasWon(player2)) break;
+            if (hasWonOrLost(player1)) break;
+            if (hasWonOrLost(player2)) break;
         }
+    }
+
+    private boolean hasWonOrLost(Player player) {
+        if (!player.hasAttempts()) {
+            hasLost(player);
+            printAllMoves();
+            return true;
+        }
+        makeGuess(player);
+        if (hasWon(player)) {
+            printAllMoves();
+            return true;
+        }
+        return false;
     }
 
     private void makeGuess(Player player) {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Попытка игрока " + player.getName() + ": ");
-        player.setNumber(scanner.nextInt());
-        scanner.nextLine();
+        player.makeGuess();
     }
 
     private boolean hasWon(Player player) {
-        if (player.getNumber() == target) {
+        if (player.getLastNumber() == target) {
             System.out.println("Игрок " + player.getName() + " выиграл!");
             return true;
         }
-        if (player.getNumber() < target) {
-            System.out.println("Число " + player.getNumber() + " меньше того, что загадал компьютер");
+        if (player.getLastNumber() < target) {
+            System.out.println("Число " + player.getLastNumber() + " меньше того, что загадал компьютер");
         } else {
-            System.out.println("Число " + player.getNumber() + " больше того, что загадал компьютер");
+            System.out.println("Число " + player.getLastNumber() + " больше того, что загадал компьютер");
         }
         return false;
+    }
+
+    private void hasLost(Player player) {
+        System.out.println("У " + player1.getName() + " закончились попытки");
+    }
+
+    private void printAllMoves() {
+        printAllPlayerMoves(player1);
+        printAllPlayerMoves(player2);
+    }
+
+    private void printAllPlayerMoves(Player player) {
+        System.out.print("Ходы игрока " + player.getName() + ": ");
+        for (int i : player.getAllMoves()) {
+            System.out.printf("%3d", i);
+        }
+        System.out.println();
     }
 }
