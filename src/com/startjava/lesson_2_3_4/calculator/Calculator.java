@@ -11,7 +11,6 @@ public class Calculator {
         int a = parseArgument(elements[0]);
         char operation = elements[1].charAt(0);
         int b = parseArgument(elements[2]);
-        //double result;
         return switch (operation) {
             case '+' -> a + b;
             case '-' -> a - b;
