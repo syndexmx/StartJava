@@ -5,14 +5,13 @@ import java.util.Scanner;
 public class CalculatorTest {
 
     public static void main(String[] args) {
-        Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
         String choice;
         do {
             System.out.print("Введите математическое выражение в формате '5 * 3' : ");
             String expression = scanner.nextLine();
             try {
-               printResult(expression, calculator.calculate(expression));
+               printResult(expression, Calculator.calculate(expression));
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }

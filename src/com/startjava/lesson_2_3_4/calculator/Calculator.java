@@ -6,22 +6,23 @@ public class Calculator {
     private static final String NON_INTEGER = "Некорректный дробный аргумент: ";
     private static final String NON_NUMBER = "Аргумент не является корректным числом: ";
 
-    public double calculate(String expression) {
+    public static double calculate(String expression) {
         String[] elements = expression.split(" ");
         int a = parseArgument(elements[0]);
         char operation = elements[1].charAt(0);
         int b = parseArgument(elements[2]);
-        double result;
-        switch (operation) {
-            case '+' -> result = a + b;
-            case '-' -> result = a - b;
-            case '*' -> result = a * b;
-            case '/' -> result = a * 1.0 / b;
-            case '%' -> result = a % b;
-            case '^' -> result = Math.pow(a, b);
-            default -> throw new RuntimeException("Ошибка: знак " + operation + " не поддерживается");
-        }
-        return result;
+        //double result;
+        return switch (operation) {
+            case '+' -> a + b;
+            case '-' -> a - b;
+            case '*' -> a * b;
+            case '/' -> a * 1.0 / b;
+            case '%' -> a % b;
+            case '^' -> Math.pow(a, b);
+            default -> {
+                throw new RuntimeException("Ошибка: знак " + operation + " не поддерживается");
+            }
+        };
     }
 
     private static int parseArgument(String operand) {
