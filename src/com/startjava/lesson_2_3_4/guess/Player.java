@@ -7,10 +7,11 @@ public class Player {
     private String name;
     private int attempt;
     private int[] numbers;
+    public static final int ATTEMPTS_LIMIT = 10;
 
     public Player(String name) {
         this.name = name;
-        this.numbers = new int[10];
+        this.numbers = new int[ATTEMPTS_LIMIT];
     }
 
     public String getName() {
@@ -21,8 +22,12 @@ public class Player {
         attempt = 0;
     }
 
-    public void acquireNumber(int number) {
-        numbers[attempt++] = number;
+    public boolean acquireNumber(int number) {
+        if (0 < number && number <= 100) {
+            numbers[attempt++] = number;
+            return true;
+        }
+        return false;
     }
 
     public int getLastNumber() {
@@ -30,7 +35,7 @@ public class Player {
     }
 
     public boolean hasAttempts() {
-        return attempt < 10;
+        return attempt < ATTEMPTS_LIMIT;
     }
 
     public int[] getAllNumbers() {

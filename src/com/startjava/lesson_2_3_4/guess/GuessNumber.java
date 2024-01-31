@@ -5,23 +5,27 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
-    private Player player1;
-    private Player player2;
+    private Player[] players;
     private int target;
 
-    public GuessNumber(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player1.resetAttempts();
-        this.player2 = player2;
-        this.player2.resetAttempts();
+    public GuessNumber(Player[] players) {
+        this.players = players;
+        for (Player player : players) {
+            player.resetAttempts();
+        }
         Random random = new Random();
         target = random.nextInt(1, 101);
     }
 
     public void play() {
-        while (true) {
-            if (isGuessed(player1)) break;
-            if (isGuessed(player2)) break;
+        boolean finished = false;
+        while (!finished) {
+            for (Player player : players) {
+                if (isGuessed(player)) {
+                    finished = true;
+                    break;
+                }
+            }
         }
         printAllMoves();
     }
@@ -41,9 +45,15 @@ public class GuessNumber {
     private Scanner scanner = new Scanner(System.in);
 
     private void makeGuess(Player player) {
-        System.out.print("Попытка игрока " + player.getName() + ": ");
-        player.acquireNumber(scanner.nextInt());
-        scanner.nextLine();
+        boolean accepted = false;
+        while (!accepted) {
+            System.out.print("Попытка игрока " + player.getName() + ": ");
+            accepted = player.acquireNumber(scanner.nextInt());
+            if (!accepted) {
+                System.out.println("Число не входит в полуинтервал (0, 100]");
+            }
+            scanner.nextLine();
+        }
     }
 
     private boolean hasWon(Player player) {
@@ -51,11 +61,9 @@ public class GuessNumber {
             System.out.println("Игрок " + player.getName() + " выиграл!");
             return true;
         }
-        if (player.getLastNumber() < target) {
-            System.out.println("Число " + player.getLastNumber() + " меньше того, что загадал компьютер");
-        } else {
-            System.out.println("Число " + player.getLastNumber() + " больше того, что загадал компьютер");
-        }
+        System.out.print("Число " + player.getLastNumber() + " ");
+        System.out.print(player.getLastNumber() < target ? "меньше" : "больше");
+        System.out.println(" того, что загадал компьютер");
         return false;
     }
 
@@ -64,8 +72,9 @@ public class GuessNumber {
     }
 
     private void printAllMoves() {
-        printAllPlayerMoves(player1);
-        printAllPlayerMoves(player2);
+        for (Player player : players) {
+            printAllPlayerMoves(player);
+        }
     }
 
     private void printAllPlayerMoves(Player player) {
