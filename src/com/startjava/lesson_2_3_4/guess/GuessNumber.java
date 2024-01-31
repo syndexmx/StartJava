@@ -9,10 +9,10 @@ public class GuessNumber {
     private Player player2;
     private int target;
 
-    public GuessNumber(Player firstPlayer, Player secondPlayer) {
-        this.player1 = firstPlayer;
+    public GuessNumber(Player player1, Player player2) {
+        this.player1 = player1;
         this.player1.resetAttempts();
-        this.player2 = secondPlayer;
+        this.player2 = player2;
         this.player2.resetAttempts();
         Random random = new Random();
         target = random.nextInt(1, 101);
@@ -23,26 +23,26 @@ public class GuessNumber {
             if (isGuessed(player1)) break;
             if (isGuessed(player2)) break;
         }
+        printAllMoves();
     }
 
     private boolean isGuessed(Player player) {
         if (!player.hasAttempts()) {
-            showLost(player);
-            printAllMoves();
+            showLosingMessage(player);
             return true;
         }
         makeGuess(player);
         if (hasWon(player)) {
-            printAllMoves();
             return true;
         }
         return false;
     }
 
+    private Scanner scanner = new Scanner(System.in);
+
     private void makeGuess(Player player) {
         System.out.print("Попытка игрока " + player.getName() + ": ");
-        Scanner scanner = new Scanner(System.in);
-        player.makeGuess(scanner.nextInt());
+        player.acquireNumber(scanner.nextInt());
         scanner.nextLine();
     }
 
@@ -59,7 +59,7 @@ public class GuessNumber {
         return false;
     }
 
-    private void showLost(Player player) {
+    private void showLosingMessage(Player player) {
         System.out.println("У " + player.getName() + " закончились попытки");
     }
 

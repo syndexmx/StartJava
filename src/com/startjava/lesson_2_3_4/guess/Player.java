@@ -1,7 +1,6 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Player {
 
@@ -12,7 +11,6 @@ public class Player {
     public Player(String name) {
         this.name = name;
         this.numbers = new int[10];
-        attempt = 0;
     }
 
     public String getName() {
@@ -23,8 +21,8 @@ public class Player {
         attempt = 0;
     }
 
-    public void makeGuess(int number) {
-        this.numbers[attempt++] = number;
+    public void acquireNumber(int number) {
+        numbers[attempt++] = number;
     }
 
     public int getLastNumber() {

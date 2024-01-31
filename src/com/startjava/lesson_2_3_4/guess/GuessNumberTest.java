@@ -2,7 +2,7 @@ package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Scanner;
 
-public class GuessingNumberTest {
+public class GuessNumberTest {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -19,7 +19,6 @@ public class GuessingNumberTest {
             }
             System.out.print("Хотите продолжить игру? [yes / no]: ");
             answer = scanner.nextLine();
-            if (answer.equalsIgnoreCase("no")) return;
-        } while (true);
+        } while (!answer.equalsIgnoreCase("no"));
     }
 }
