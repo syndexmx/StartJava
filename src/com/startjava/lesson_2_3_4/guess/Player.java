@@ -7,6 +7,7 @@ public class Player {
     private String name;
     private int attempt;
     private int[] numbers;
+    private int wins;
     public static final int ATTEMPTS_LIMIT = 10;
 
     public Player(String name) {
@@ -40,5 +41,13 @@ public class Player {
 
     public int[] getAllNumbers() {
         return Arrays.copyOf(numbers, attempt);
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
     }
 }

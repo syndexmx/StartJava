@@ -59,6 +59,7 @@ public class GuessNumber {
     private boolean hasWon(Player player) {
         if (player.getLastNumber() == target) {
             System.out.println("Игрок " + player.getName() + " выиграл!");
+            player.setWins(player.getWins() + 1);
             return true;
         }
         System.out.print("Число " + player.getLastNumber() + " ");
