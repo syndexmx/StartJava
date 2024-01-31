@@ -1,7 +1,7 @@
 package com.startjava.lesson_2_3_4.guess;
 
-
 import java.util.Random;
+import java.util.Scanner;
 
 public class GuessNumber {
 
@@ -20,14 +20,14 @@ public class GuessNumber {
 
     public void play() {
         while (true) {
-            if (hasWonOrLost(player1)) break;
-            if (hasWonOrLost(player2)) break;
+            if (isGuessed(player1)) break;
+            if (isGuessed(player2)) break;
         }
     }
 
-    private boolean hasWonOrLost(Player player) {
+    private boolean isGuessed(Player player) {
         if (!player.hasAttempts()) {
-            hasLost(player);
+            showLost(player);
             printAllMoves();
             return true;
         }
@@ -41,7 +41,9 @@ public class GuessNumber {
 
     private void makeGuess(Player player) {
         System.out.print("Попытка игрока " + player.getName() + ": ");
-        player.makeGuess();
+        Scanner scanner = new Scanner(System.in);
+        player.makeGuess(scanner.nextInt());
+        scanner.nextLine();
     }
 
     private boolean hasWon(Player player) {
@@ -57,8 +59,8 @@ public class GuessNumber {
         return false;
     }
 
-    private void hasLost(Player player) {
-        System.out.println("У " + player1.getName() + " закончились попытки");
+    private void showLost(Player player) {
+        System.out.println("У " + player.getName() + " закончились попытки");
     }
 
     private void printAllMoves() {
@@ -68,8 +70,8 @@ public class GuessNumber {
 
     private void printAllPlayerMoves(Player player) {
         System.out.print("Ходы игрока " + player.getName() + ": ");
-        for (int i : player.getAllMoves()) {
-            System.out.printf("%3d", i);
+        for (int i : player.getAllNumbers()) {
+            System.out.printf("%4d", i);
         }
         System.out.println();
     }

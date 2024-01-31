@@ -6,15 +6,13 @@ import java.util.Scanner;
 public class Player {
 
     private String name;
-
-    private int cursor;
-
+    private int attempt;
     private int[] numbers;
 
     public Player(String name) {
         this.name = name;
         this.numbers = new int[10];
-        cursor = -1;
+        attempt = 0;
     }
 
     public String getName() {
@@ -22,24 +20,22 @@ public class Player {
     }
 
     public void resetAttempts() {
-        cursor = -1;
+        attempt = 0;
     }
 
-    public void makeGuess() {
-        Scanner scanner = new Scanner(System.in);
-        this.numbers[++cursor] = scanner.nextInt();
-        scanner.nextLine();
+    public void makeGuess(int number) {
+        this.numbers[attempt++] = number;
     }
 
     public int getLastNumber() {
-        return numbers[cursor];
+        return numbers[attempt - 1];
     }
 
     public boolean hasAttempts() {
-        return cursor < 9;
+        return attempt < 10;
     }
 
-    public int[] getAllMoves() {
-        return Arrays.copyOf(numbers, cursor + 1);
+    public int[] getAllNumbers() {
+        return Arrays.copyOf(numbers, attempt);
     }
 }

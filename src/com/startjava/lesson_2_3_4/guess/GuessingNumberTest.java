@@ -10,14 +10,16 @@ public class GuessingNumberTest {
         Player player1 = new Player(scanner.nextLine());
         System.out.print("Введите имя второго игрока: ");
         Player player2 = new Player(scanner.nextLine());
-        String answer;
+        String answer = "yes";
         do {
-            System.out.println("Игра началась! У каждого игрока по 10 попыток.");
-            GuessNumber game = new GuessNumber(player1, player2);
-            game.play();
-            System.out.print("Хотите продолжить игру? [yes = да]: ");
+            if (answer.equalsIgnoreCase("yes")) {
+                System.out.println("Игра началась! У каждого игрока по 10 попыток.");
+                GuessNumber game = new GuessNumber(player1, player2);
+                game.play();
+            }
+            System.out.print("Хотите продолжить игру? [yes / no]: ");
             answer = scanner.nextLine();
-            if (!answer.equalsIgnoreCase("yes")) return;
+            if (answer.equalsIgnoreCase("no")) return;
         } while (true);
     }
 }
