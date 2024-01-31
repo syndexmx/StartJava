@@ -1,5 +1,6 @@
 package com.startjava.lesson_2_3_4.guess;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class GuessNumberTest {
@@ -14,6 +15,7 @@ public class GuessNumberTest {
             Player player = new Player(scanner.nextLine());
             players[i] = player;
         }
+        shufflePlayers(players);
         String answer = "yes";
         do {
             if (answer.equalsIgnoreCase("yes")) {
@@ -25,5 +27,16 @@ public class GuessNumberTest {
             System.out.print("Хотите продолжить игру? [yes / no]: ");
             answer = scanner.nextLine();
         } while (!answer.equalsIgnoreCase("no"));
+    }
+
+    private static void shufflePlayers(Player[] players) {
+        for (int i = players.length - 1; i > 0; i--) {
+            Random random = new Random();
+            int index = random.nextInt(i);
+            Player swap = players[i];
+            players[i] = players[index];
+            players[index] = swap;
+        }
+        System.out.println("Произведена жеребьевка по порядку хододов.");
     }
 }
