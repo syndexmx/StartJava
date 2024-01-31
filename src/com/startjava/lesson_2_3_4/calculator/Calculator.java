@@ -18,9 +18,7 @@ public class Calculator {
             case '/' -> a * 1.0 / b;
             case '%' -> a % b;
             case '^' -> Math.pow(a, b);
-            default -> {
-                throw new RuntimeException("Ошибка: знак " + operation + " не поддерживается");
-            }
+            default -> throw new RuntimeException("Ошибка: знак " + operation + " не поддерживается");
         };
     }
 

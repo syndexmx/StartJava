@@ -22,10 +22,6 @@ public class CalculatorTest {
 
     private static void printResult(String expression, double result) {
         System.out.print(expression + " = ");
-        if (result == (int) result) {
-            System.out.print((int) result);
-        } else {
-            System.out.printf("%6.3f", result);
-        }
+        System.out.print(result == (int) result ? ((int) result) : result);
     }
 }
