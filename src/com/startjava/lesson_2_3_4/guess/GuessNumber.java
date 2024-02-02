@@ -48,7 +48,7 @@ public class GuessNumber {
         boolean accepted = false;
         while (!accepted) {
             System.out.print("Попытка игрока " + player.getName() + ": ");
-            accepted = player.acquireNumber(scanner.nextInt());
+            accepted = player.addNumber(scanner.nextInt());
             if (!accepted) {
                 System.out.println("Число не входит в полуинтервал (0, 100]");
             }

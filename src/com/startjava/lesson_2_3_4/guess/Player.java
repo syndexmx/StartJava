@@ -4,15 +4,16 @@ import java.util.Arrays;
 
 public class Player {
 
+    public static final int ATTEMPTS_LIMIT = 10;
+    private static final int UPPER_BOUND = 100;
     private String name;
     private int attempt;
     private int[] numbers;
     private int wins;
-    public static final int ATTEMPTS_LIMIT = 10;
 
     public Player(String name) {
         this.name = name;
-        this.numbers = new int[ATTEMPTS_LIMIT];
+        numbers = new int[ATTEMPTS_LIMIT];
     }
 
     public String getName() {
@@ -23,8 +24,8 @@ public class Player {
         attempt = 0;
     }
 
-    public boolean acquireNumber(int number) {
-        if (0 < number && number <= 100) {
+    public boolean addNumber(int number) {
+        if (0 < number && number <= UPPER_BOUND) {
             numbers[attempt++] = number;
             return true;
         }

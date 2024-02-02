@@ -6,15 +6,13 @@ import java.util.Scanner;
 public class GuessNumberTest {
 
     static private final int NUMBER_OF_PLAYERS = 3;
-    static private Player[] players = new Player[NUMBER_OF_PLAYERS];
     static private final int NUMBER_OF_ROUNDS = 3;
+    static private Player[] players = new Player[NUMBER_OF_PLAYERS];
+    static private Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
-            System.out.print("Введите имя игрока #" + (i + 1) + ": ");
-            Player player = new Player(scanner.nextLine());
-            players[i] = player;
+            players[i] = getNewPlayer(i);
         }
         shufflePlayers(players);
         String answer = "yes";
@@ -36,6 +34,11 @@ public class GuessNumberTest {
         } while (!answer.equalsIgnoreCase("no"));
     }
 
+    private static Player getNewPlayer(int playerIndex) {
+        System.out.print("Введите имя игрока #" + (playerIndex + 1) + ": ");
+        return new Player(scanner.nextLine());
+    }
+
     private static void shufflePlayers(Player[] players) {
         for (int i = players.length - 1; i > 0; i--) {
             Random random = new Random();
@@ -44,7 +47,7 @@ public class GuessNumberTest {
             players[i] = players[index];
             players[index] = swap;
         }
-        System.out.println("Произведена жеребьевка по порядку хододов.");
+        System.out.println("Произведена жеребьевка по порядку ходов.");
     }
 
     private static void showGameWinner(Player[] players) {
