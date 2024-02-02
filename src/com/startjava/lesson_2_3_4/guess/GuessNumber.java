@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
+    static private final int NUMBER_OF_ROUNDS = 3;
     private Player[] players;
     private int target;
 
@@ -15,6 +16,20 @@ public class GuessNumber {
         }
         Random random = new Random();
         target = random.nextInt(1, 101);
+    }
+
+    public void playGame() {
+        shufflePlayers(players);
+        for (Player player : players) {
+            player.setWins(0);
+        }
+        for (int i = 0; i < NUMBER_OF_ROUNDS; i++) {
+            System.out.println("Раунд #" + (i + 1) + " начался! У каждого игрока по " +
+                    Player.ATTEMPTS_LIMIT + " попыток.");
+            GuessNumber round = new GuessNumber(players);
+            round.play();
+        }
+        showGameWinner(players);
     }
 
     public void play() {
@@ -28,6 +43,38 @@ public class GuessNumber {
             }
         }
         printAllMoves();
+    }
+
+    private static void shufflePlayers(Player[] players) {
+        for (int i = players.length - 1; i > 0; i--) {
+            Random random = new Random();
+            int index = random.nextInt(i);
+            Player swap = players[i];
+            players[i] = players[index];
+            players[index] = swap;
+        }
+        System.out.println("Произведена жеребьевка по порядку ходов.");
+    }
+
+    private static void showGameWinner(Player[] players) {
+        int maxScore = 0;
+        for (Player player : players) {
+            maxScore = Math.max(maxScore, player.getWins());
+        }
+        int countWithMaxScore = 0;
+        for (Player player : players) {
+            if (player.getWins() == maxScore) countWithMaxScore++;
+        }
+        if (countWithMaxScore > 1) {
+            System.out.println("По результатам " + NUMBER_OF_ROUNDS + " раундов вышла ничья.");
+            return;
+        }
+        for (Player player : players) {
+            if (player.getWins() == maxScore) {
+                System.out.println("По результатам " + NUMBER_OF_ROUNDS + " раундов выиграл " +
+                        player.getName());
+            }
+        }
     }
 
     private boolean isGuessed(Player player) {
