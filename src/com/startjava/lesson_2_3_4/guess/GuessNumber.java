@@ -88,6 +88,7 @@ public class GuessNumber {
                         player.getName());
             }
         }
+    }
 
 
     private void makeGuess(Player player) {
