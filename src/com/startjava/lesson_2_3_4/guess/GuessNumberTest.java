@@ -2,6 +2,8 @@ package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Scanner;
 
+import static com.startjava.lesson_2_3_4.guess.GuessNumber.initGame;
+
 public class GuessNumberTest {
 
     static private final int NUMBER_OF_PLAYERS = 3;
@@ -13,8 +15,8 @@ public class GuessNumberTest {
         String answer = "yes";
         do {
             if (answer.equalsIgnoreCase("yes")) {
-                GuessNumber game = new GuessNumber(players);
-                game.play();
+                GuessNumber.initGame(players);
+                GuessNumber.play();
             }
             System.out.print("Хотите продолжить игру? [yes / no]: ");
             answer = scanner.nextLine();
