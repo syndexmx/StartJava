@@ -25,7 +25,7 @@ public class Player {
     }
 
     public boolean addNumber(int number) {
-        if (0 < number && number <= UPPER_BOUND) {
+        if (number > 0 && number <= UPPER_BOUND) {
             numbers[attempt++] = number;
             return true;
         }
