@@ -12,13 +12,13 @@ public class GuessNumberTest {
         createPlayers(players);
         String answer = "yes";
         do {
-            if (answer.equalsIgnoreCase("yes")) {
+            if (answer.equals("yes")) {
                 GuessNumber game = new GuessNumber();
                 game.play(players);
             }
             System.out.print("Хотите продолжить игру? [yes / no]: ");
-            answer = scanner.nextLine();
-        } while (!answer.equalsIgnoreCase("no"));
+            answer = scanner.nextLine().toLowerCase();
+        } while (!answer.equals("no"));
     }
 
     private static void createPlayers(Player[] players) {
@@ -26,5 +26,5 @@ public class GuessNumberTest {
             System.out.print("Введите имя игрока #" + (i + 1) + ": ");
             players[i] = new Player(scanner.nextLine());
         }
-    };
+    }
 }
