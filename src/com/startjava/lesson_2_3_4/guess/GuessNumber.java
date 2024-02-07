@@ -6,20 +6,12 @@ import java.util.Scanner;
 public class GuessNumber {
 
     static private final int ROUNDS = 3;
-    private static Player[] players;
-    private static int target;
+    private Player[] players;
+    private int target;
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void initGame(Player[] incomingPlayers) {
+    public void play(Player[] incomingPlayers) {
         players = incomingPlayers;
-        for (Player player : players) {
-            player.resetAttempts();
-        }
-        Random random = new Random();
-        target = random.nextInt(1, 101);
-    }
-
-    public static void play() {
         shuffle(players);
         for (Player player : players) {
             player.setWins(0);
@@ -27,13 +19,21 @@ public class GuessNumber {
         for (int i = 0; i < ROUNDS; i++) {
             System.out.println("Раунд #" + (i + 1) + " начался! У каждого игрока по " +
                     Player.ATTEMPTS_LIMIT + " попыток.");
-            initGame(players);
+            initGame();
             playRound();
         }
-        showGameWinner(players);
+        showGameWinner();
     }
 
-    private static void shuffle(Player[] players) {
+    public void initGame() {
+        for (Player player : players) {
+            player.resetAttempts();
+        }
+        Random random = new Random();
+        target = random.nextInt(1, 101);
+    }
+
+    private void shuffle(Player[] players) {
         for (int i = players.length - 1; i > 0; i--) {
             Random random = new Random();
             int index = random.nextInt(i);
@@ -44,7 +44,7 @@ public class GuessNumber {
         System.out.println("Произведена жеребьевка по порядку ходов.");
     }
 
-    public static void playRound() {
+    public void playRound() {
         boolean finished = false;
         while (!finished) {
             for (Player player : players) {
@@ -57,7 +57,7 @@ public class GuessNumber {
         printAllMoves();
     }
 
-    private static boolean isGuessed(Player player) {
+    private boolean isGuessed(Player player) {
         if (!player.hasAttempts()) {
             showLosingMessage(player);
             return true;
@@ -69,7 +69,7 @@ public class GuessNumber {
         return false;
     }
 
-    private static void showGameWinner(Player[] players) {
+    private void showGameWinner() {
         int maxScore = 0;
         for (Player player : players) {
             maxScore = Math.max(maxScore, player.getWins());
@@ -103,7 +103,7 @@ public class GuessNumber {
         }
     }
 
-    private static boolean hasWon(Player player) {
+    private boolean hasWon(Player player) {
         if (player.getLastNumber() == target) {
             System.out.println("Игрок " + player.getName() + " выиграл!");
             player.setWins(player.getWins() + 1);
@@ -119,7 +119,7 @@ public class GuessNumber {
         System.out.println("У " + player.getName() + " закончились попытки");
     }
 
-    private static void printAllMoves() {
+    private void printAllMoves() {
         for (Player player : players) {
             printAllPlayerMoves(player);
         }
