@@ -13,8 +13,8 @@ public class GuessNumberTest {
         String answer = "yes";
         do {
             if (answer.equals("yes")) {
-                GuessNumber game = new GuessNumber();
-                game.play(players);
+                GuessNumber game = new GuessNumber(players);
+                game.play();
             }
             System.out.print("Хотите продолжить игру? [yes / no]: ");
             answer = scanner.nextLine().toLowerCase();
