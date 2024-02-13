@@ -2,8 +2,8 @@ package com.startjava.lesson_2_3_4.graduation.model;
 
 public class BookCase {
 
-    private int capacity;
-    private int size;
+    private final int capacity;
+    private int countBooks;
     private Book[] books;
     private int maxInfoLength;
 
@@ -12,8 +12,8 @@ public class BookCase {
         books = new Book[capacity];
     }
 
-    public int getSize() {
-        return size;
+    public int getCountBooks() {
+        return countBooks;
     }
 
     public int getCapacity() {
@@ -28,9 +28,9 @@ public class BookCase {
         return books[index];
     }
 
-    public void addBook(Book book) {
-        if (size < capacity) {
-            books[size++] = book;
+    public void add(Book book) {
+        if (countBooks < capacity) {
+            books[countBooks++] = book;
             if (book.getInfoLength() > maxInfoLength) {
                 maxInfoLength = book.getInfoLength();
             }
@@ -39,8 +39,8 @@ public class BookCase {
         }
     }
 
-    public void findBookByTitle(String title) {
-        for (int i = 0; i < size; i++) {
+    public void findByTitle(String title) {
+        for (int i = 0; i < countBooks; i++) {
             Book book = books[i];
             if (title.equalsIgnoreCase(book.getTitle())) {
                 System.out.println("Найдена книга: " + book);
@@ -48,9 +48,9 @@ public class BookCase {
         }
     }
 
-    public void deleteBookByTitle(String title) {
+    public void deleteByTitle(String title) {
         int index = -1;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < countBooks; i++) {
             if (title.equalsIgnoreCase(books[i].getTitle())) {
                 index = i;
                 break;
@@ -58,9 +58,9 @@ public class BookCase {
         }
         if (index >= 0) {
             Book book = books[index];
-            System.arraycopy(books, index + 1, books, index, size - index - 1);
+            System.arraycopy(books, index + 1, books, index, countBooks - index - 1);
             System.out.println("Книга " + book + " удалена!");
-            size--;
+            countBooks--;
             if (book.getInfoLength() == maxInfoLength) {
                 recalculateMaxInfoLength();
             }
@@ -68,12 +68,15 @@ public class BookCase {
     }
 
     public void clear() {
-        size = 0;
+        countBooks = 0;
         maxInfoLength = 0;
+        for (int i = 0; i < countBooks; i++) {
+            books[i] = null;
+        }
     }
 
     private void recalculateMaxInfoLength() {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < countBooks; i++) {
             maxInfoLength = Math.max(maxInfoLength, books[i].getInfoLength());
         }
     }

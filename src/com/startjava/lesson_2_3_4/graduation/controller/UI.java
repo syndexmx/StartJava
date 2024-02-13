@@ -17,7 +17,7 @@ public class UI {
     }
 
     private void showBookCase() {
-        int size = bookCase.getSize();
+        int size = bookCase.getCountBooks();
         if (size > 0) {
             System.out.print("В шкафу книг : " + size + ",");
             System.out.println(" свободно полок : " + (bookCase.getCapacity() - size));
@@ -72,20 +72,20 @@ public class UI {
         }
         int year = Integer.parseInt(yearInput);
         Book newBook = new Book(author, title, year);
-        bookCase.addBook(newBook);
+        bookCase.add(newBook);
     }
 
     private void deleteBook() {
         System.out.println("*** Удаление книги ***");
         System.out.print("Введите название книги: ");
         String title = scanner.nextLine();
-        bookCase.deleteBookByTitle(title);
+        bookCase.deleteByTitle(title);
     }
 
     private void findBook() {
         System.out.println("*** Поиск книги ***");
         System.out.print("Введите название искомой книги: ");
         String title = scanner.nextLine();
-        bookCase.findBookByTitle(title);
+        bookCase.findByTitle(title);
     }
 }
