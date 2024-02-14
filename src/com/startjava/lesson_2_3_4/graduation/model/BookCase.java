@@ -1,5 +1,7 @@
 package com.startjava.lesson_2_3_4.graduation.model;
 
+import java.util.Arrays;
+
 public class BookCase {
 
     private final int capacity;
@@ -70,9 +72,7 @@ public class BookCase {
     public void clear() {
         countBooks = 0;
         maxInfoLength = 0;
-        for (int i = 0; i < countBooks; i++) {
-            books[i] = null;
-        }
+        Arrays.fill(books, 0, capacity - 1, null);
     }
 
     private void recalculateMaxInfoLength() {
