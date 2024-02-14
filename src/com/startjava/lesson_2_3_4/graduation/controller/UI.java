@@ -1,30 +1,32 @@
 package com.startjava.lesson_2_3_4.graduation.controller;
 
 import com.startjava.lesson_2_3_4.graduation.model.Book;
-import com.startjava.lesson_2_3_4.graduation.model.BookCase;
+import com.startjava.lesson_2_3_4.graduation.service.BookCase;
 
 import java.util.Scanner;
 
 public class UI {
 
-    private BookCase bookCase = new BookCase(10);
+    private static final int BOOKCASE_CAPACITY = 10;
+    private BookCase bookCase = new BookCase(BOOKCASE_CAPACITY);
     private Scanner scanner = new Scanner(System.in);
 
-    public void processMenu() {
+    public void doUserAction() {
         showBookCase();
         showMenu();
         makeChoice();
     }
 
     private void showBookCase() {
-        int size = bookCase.getCountBooks();
+        Book[] allBooks = bookCase.getAllBooks();
+        int size = allBooks.length;
         if (size > 0) {
             System.out.print("В шкафу книг : " + size + ",");
             System.out.println(" свободно полок : " + (bookCase.getCapacity() - size));
             int length = bookCase.getMaxInfoLength();
             for (int i = 0; i < size; i++) {
                 System.out.print("|");
-                Book book = bookCase.getBook(i);
+                Book book = allBooks[i];
                 System.out.print(book + " ".repeat(length - book.getInfoLength()));
                 System.out.println("|");
                 System.out.println("|" + "-".repeat(length) + "|");
@@ -37,11 +39,12 @@ public class UI {
 
     private void showMenu() {
         System.out.println("*** Меню ***");
-        System.out.println("0. Завершить");
-        System.out.println("1. Добавить книгу");
-        System.out.println("2. Найти книгу");
-        System.out.println("3. Удалить книгу");
-        System.out.println("4. Очистить шкаф");
+        System.out.println("""
+                0. Завершить
+                1. Добавить книгу
+                2. Найти книгу
+                3. Удалить книгу
+                4. Очистить шкаф""");
     }
 
     private void makeChoice() {
@@ -52,9 +55,7 @@ public class UI {
             case "1" -> addBook();
             case "2" -> findBook();
             case "3" -> deleteBook();
-            case "4" -> {
-                bookCase.clear();
-            }
+            case "4" -> bookCase.clear();
             default -> System.out.println("Некорректная команда!");
         }
     }
@@ -63,8 +64,7 @@ public class UI {
         System.out.println("*** Добавление книги ***");
         System.out.print("Введите автора: ");
         String author = scanner.nextLine();
-        System.out.print("Введите название: ");
-        String title = scanner.nextLine();
+        String title = enterBookTitle();
         System.out.print("Введите год: ");
         String yearInput = "";
         while (!yearInput.matches("\\d\\d\\d\\d")) {
@@ -75,17 +75,20 @@ public class UI {
         bookCase.add(newBook);
     }
 
+    private String enterBookTitle() {
+        System.out.print("Введите название: ");
+        return scanner.nextLine();
+    }
+
     private void deleteBook() {
         System.out.println("*** Удаление книги ***");
-        System.out.print("Введите название книги: ");
-        String title = scanner.nextLine();
+        String title = enterBookTitle();
         bookCase.deleteByTitle(title);
     }
 
     private void findBook() {
         System.out.println("*** Поиск книги ***");
-        System.out.print("Введите название искомой книги: ");
-        String title = scanner.nextLine();
+        String title = enterBookTitle();
         bookCase.findByTitle(title);
     }
 }

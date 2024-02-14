@@ -7,7 +7,7 @@ public class BookCaseApp {
     public static void main(String[] args) {
         UI ui = new UI();
         while (true) {
-            ui.processMenu();
+            ui.doUserAction();
         }
     }
 }

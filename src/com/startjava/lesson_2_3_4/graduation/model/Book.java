@@ -4,6 +4,7 @@ public class Book {
 
     private String author;
     private String title;
+    // год издания
     private int year;
     private int infoLength;
 

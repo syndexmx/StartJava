@@ -1,4 +1,6 @@
-package com.startjava.lesson_2_3_4.graduation.model;
+package com.startjava.lesson_2_3_4.graduation.service;
+
+import com.startjava.lesson_2_3_4.graduation.model.Book;
 
 import java.util.Arrays;
 
@@ -26,10 +28,6 @@ public class BookCase {
         return maxInfoLength;
     }
 
-    public Book getBook(int index) {
-        return books[index];
-    }
-
     public void add(Book book) {
         if (countBooks < capacity) {
             books[countBooks++] = book;
@@ -39,6 +37,10 @@ public class BookCase {
         } else {
             System.out.println("Шкаф полон!");
         }
+    }
+
+    public Book[] getAllBooks() {
+        return Arrays.copyOf(books, countBooks);
     }
 
     public void findByTitle(String title) {
