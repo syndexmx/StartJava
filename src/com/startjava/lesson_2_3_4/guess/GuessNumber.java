@@ -15,17 +15,6 @@ public class GuessNumber {
         shuffle();
     }
 
-    public void play() {
-        resetWins();
-        for (int i = 1; i <= ROUNDS; i++) {
-            System.out.println("Раунд #" + i + " начался! У каждого игрока по " +
-                    Player.ATTEMPTS_LIMIT + " попыток.");
-            initGame();
-            playRound();
-        }
-        showGameWinner();
-    }
-
     private void shuffle() {
         for (int i = players.length - 1; i > 0; i--) {
             Random random = new Random();
@@ -35,6 +24,17 @@ public class GuessNumber {
             players[index] = swap;
         }
         System.out.println("Произведена жеребьевка по порядку ходов.");
+    }
+
+    public void play() {
+        resetWins();
+        for (int i = 1; i <= ROUNDS; i++) {
+            System.out.println("Раунд #" + i + " начался! У каждого игрока по " +
+                    Player.ATTEMPTS_LIMIT + " попыток.");
+            initGame();
+            playRound();
+        }
+        showGameWinner();
     }
 
     private void resetWins() {

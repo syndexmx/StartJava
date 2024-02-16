@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class UI {
 
-    private static final int BOOKCASE_CAPACITY = 10;
-    private BookCase bookCase = new BookCase(BOOKCASE_CAPACITY);
+    private static final int CAPACITY = 10;
+    private BookCase bookCase = new BookCase(CAPACITY);
     private Scanner scanner = new Scanner(System.in);
 
-    public void doUserAction() {
+    public void start() {
         showBookCase();
         showMenu();
         makeChoice();
@@ -89,6 +89,11 @@ public class UI {
     private void findBook() {
         System.out.println("*** Поиск книги ***");
         String title = enterBookTitle();
-        bookCase.findByTitle(title);
+        Book book = bookCase.findByTitle(title);
+        if (book!=null) {
+            System.out.println("Найдена книга: " + book);
+        } else {
+            System.out.println("Запрошенной книги не найдено!");
+        }
     }
 }

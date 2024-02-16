@@ -43,13 +43,14 @@ public class BookCase {
         return Arrays.copyOf(books, countBooks);
     }
 
-    public void findByTitle(String title) {
+    public Book findByTitle(String title) {
         for (int i = 0; i < countBooks; i++) {
             Book book = books[i];
             if (title.equalsIgnoreCase(book.getTitle())) {
-                System.out.println("Найдена книга: " + book);
+                return book;
             }
         }
+        return null;
     }
 
     public void deleteByTitle(String title) {
@@ -71,15 +72,15 @@ public class BookCase {
         }
     }
 
-    public void clear() {
-        countBooks = 0;
-        maxInfoLength = 0;
-        Arrays.fill(books, 0, capacity - 1, null);
-    }
-
     private void recalculateMaxInfoLength() {
         for (int i = 0; i < countBooks; i++) {
             maxInfoLength = Math.max(maxInfoLength, books[i].getInfoLength());
         }
+    }
+
+    public void clear() {
+        countBooks = 0;
+        maxInfoLength = 0;
+        Arrays.fill(books, 0, capacity, null);
     }
 }
